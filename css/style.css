@@ -1,0 +1,111 @@
+body {
+	background-image: url(' ../images/black_lozenge.png');
+	/* Background pattern from Subtle Patterns */
+	color: #ddd;
+	min-height: 100vh;
+	margin: 0;
+	background-position: right;
+	font-family: 'Arial', monospace;
+}
+
+* {
+	outline: 1px solid red;
+}
+
+.container {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.board {
+	max-width: 90vw;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	background: #777;
+}
+
+.board h1 {
+	text-shadow: 2px 2px 2px black;
+}
+
+.operate {
+	text-align: center;
+}
+
+.operate .create-board {
+	background: #80aef7;
+	margin: 10px;
+}
+
+.create-column {
+	margin: 10px;
+	background: #7cff85;
+}
+
+.column-container {
+	display: flex;
+	align-content: space-between;
+}
+
+.column {
+	width: 100%;
+	min-height: 70vh;
+}
+
+button {
+	width: 200px;
+	height: 50px;
+	text-transform: uppercase;
+	/*padding: 10px 20px;*/
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: #000;
+}
+
+.board .card {
+	background: #555;
+	border: 1 solid black;
+	list-style: none;
+	display: block;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.column .add-card {
+	border-radius: 0 2px 2px 0;	
+	background: #07108e;
+}
+
+.column .btn-delete {
+	border-radius: 2px 0 0 2px;	
+	background: #4c4f4c;
+	text-transform: uppercase;
+}
+
+.column:first-child {
+	background: rgba(229, 166, 57, 0.7);
+}
+
+.column:nth-child(2) {
+	background: rgba(97, 112, 204, 0.7);
+}
+
+.column:last-child {
+	background: rgba(84, 153, 87, 0.7);
+}
+
+.card-placeholder {
+	border: 2px dotted black;
+}
+
+.fake {
+	list-style: none;
+	font-style: italic;
+	/*line-height: 1px;*/
+}
