@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-var count = 0;
+//var count = 0;
+var board = {};
 
 	function randomString() {
 	    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
@@ -25,7 +26,7 @@ var count = 0;
 			var $columnCardList = $('<ul>').addClass('column-card-list');
 			var $fakeCard = $('<li>').addClass('fake'); // Moja wrzutka, umożliwia przenoszenie kart między kolumnami
 			var $columnDelete = $('<button>').addClass('btn-delete').text('x');
-			var $columnAddCard = $('<button>').addClass('add-card').text('Add a card');
+			var $columnAddCard = $('<button>').addClass('add-card').text('new card');
 		
 			$columnDelete.click(function() {
 	        	self.removeColumn();
@@ -82,8 +83,7 @@ var count = 0;
 		}
 	};
 
-	function kurwa() {
-
+	function kurwa(name) {
 		var name = prompt('Enter a column name');
 		var column = new Column(name);
 		column.$element.appendTo($(this).siblings('.column-container'));
@@ -112,9 +112,11 @@ var count = 0;
 	    $('.column-card-list').find('.fake').appendTo($('.column-card-list'));		
 	}
 
-	//var board = setNewBoard();
+	//Tworzenie tablicy
+	setNewBoard('Kanban');
+
 	// TWORZENIE KOLUMN
-	/*var todoColumn = new Column('To do');
+	var todoColumn = new Column('To do');
 	var doingColumn = new Column('Doing');
 	var doneColumn = new Column('Done');
 
@@ -142,13 +144,16 @@ var count = 0;
 		this.name = name;
 		this.$element = createBoard();
 		this.number = num;
-	    /*$element: $('#board .column-container')*/
+	    this.addColumn = function (column) {
+			this.$element.find('.column-container').append(column.$element);
+			initSortable();
+	    };
 
 		function createBoard() {
 			var $board = $('<div>').addClass('board');
 			var $container = $('<div>').addClass('column-container');
 			var $boardTitle = $('<h1>').text(self.name);
-			var $setColumn = $('<button>').addClass('create-column').text('Add a column');
+			var $setColumn = $('<button>').addClass('create-column').text('new column');
 			/*$setColumn.attr('id', self.number);*/
 
 			$setColumn.click(kurwa);
@@ -159,25 +164,26 @@ var count = 0;
 			
 			return $board;
 		}
-
 	}
-
-	Board.prototype.addColumn = function() {
-		this.$element.children('.column-container').append(column.$element);
-	}
-
-	function setNewBoard() {
-		var name = prompt('Enter a board name');
-		var newBoard = new Board(name, count);
-	    $('.operate').after(newBoard.$element);
-	    count++;
+/*
+	Board.prototype.addColumn = function(column) {
+		this.$element.find('.column-container').append(column.$element);
+		//column.$element.appendTo($(this).('.column-container'));
+		//$(this).find('.column-container').append(column.$element);
+	};
+*/
+	function setNewBoard(name) {
+		board = new Board(name);
+	    $('.operate').after(board.$element);
+	    //count++;
 	    //var newBoard = null;
 	    //console.log(newBoard);
-	    //return newBoard;		
+	    return board;		
 	}
 
 	$('.create-board').click(function() {
-		setNewBoard()
+		var boardName = prompt('Enter a board name');
+		setNewBoard(boardName);
 	});
 
 	/*var buttons = $('.create-column');

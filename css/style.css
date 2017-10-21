@@ -1,34 +1,39 @@
 body {
-	background-image: url(' ../images/black_lozenge.png');
+	/*background-image: url(' ../images/black_lozenge.png');
 	/* Background pattern from Subtle Patterns */
-	color: #ddd;
+	background-image: url('https://images.pexels.com/photos/90633/pexels-photo-90633.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #222;
 	min-height: 100vh;
 	margin: 0;
 	background-position: right;
 	font-family: 'Arial', monospace;
 }
 
-* {
+/* {
 	outline: 1px solid red;
 }
-
+*/
 .container {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-
 .board {
 	max-width: 90vw;
 	margin-right: auto;
 	margin-left: auto;
 	text-align: center;
-	background: #777;
+	/*background: #777;*/
 }
 
 .board h1 {
 	text-shadow: 2px 2px 2px black;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.3);
+	margin-bottom: 0;
 }
 
 .operate {
@@ -36,67 +41,84 @@ body {
 }
 
 .operate .create-board {
-	background: #80aef7;
+	background: #f7b859;
 	margin: 10px;
+	width: 200px;
+	height: 50px;
+	text-transform: uppercase;
+
 }
 
 .create-column {
 	margin: 10px;
 	background: #7cff85;
+	width: 200px;
+	height: 50px;
+	text-transform: uppercase;
 }
 
 .column-container {
 	display: flex;
 	align-content: space-between;
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .column {
 	width: 100%;
 	min-height: 70vh;
+	position: relative;
 }
 
 button {
-	width: 200px;
-	height: 50px;
-	text-transform: uppercase;
 	/*padding: 10px 20px;*/
 	border: none;
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: 1px;
-	color: #000;
+	color: #222;
+	cursor: pointer;
 }
 
 .board .card {
-	background: #555;
+	background: #f7b859;
 	border: 1 solid black;
 	list-style: none;
 	display: block;
-	width: 70%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	padding: 2px;
+	border-radius: 5px 15px 5px 5px;
+	position: relative;
+	margin-bottom: 10px;
 }
 
-.column .add-card {
-	border-radius: 0 2px 2px 0;	
-	background: #07108e;
-}
 
-.column .btn-delete {
-	border-radius: 2px 0 0 2px;	
-	background: #4c4f4c;
+
+.add-card {
+	border-radius: 2px;
+	padding: 5px 5px;	
+	background: #7cff85;
 	text-transform: uppercase;
+	font-size: 13px;
 }
 
-.column:first-child {
-	background: rgba(229, 166, 57, 0.7);
+.btn-delete {
+	background: transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
-.column:nth-child(2) {
+.column-card-list {
+	padding: 0;
+}
+
+.column:nth-child(odd) {
 	background: rgba(97, 112, 204, 0.7);
 }
 
-.column:last-child {
+.column:nth-child(even) {
 	background: rgba(84, 153, 87, 0.7);
 }
 
@@ -107,5 +129,6 @@ button {
 .fake {
 	list-style: none;
 	font-style: italic;
+	color: #ddd;
 	/*line-height: 1px;*/
 }
