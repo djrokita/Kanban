@@ -19,7 +19,6 @@ var board = {};
 		this.name = name;
 		this.$element = createColumn();
 
-
 		function createColumn() {
 			var $column = $('<div>').addClass('column');
 			var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
@@ -27,6 +26,7 @@ var board = {};
 			var $fakeCard = $('<li>').addClass('fake'); // Moja wrzutka, umożliwia przenoszenie kart między kolumnami
 			var $columnDelete = $('<button>').addClass('btn-delete').text('x');
 			var $columnAddCard = $('<button>').addClass('add-card').text('new card');
+			self.checkList = $('li').length;	
 		
 			$columnDelete.click(function() {
 	        	self.removeColumn();
@@ -47,13 +47,14 @@ var board = {};
 	}
 
 	Column.prototype.addCard = function(card) {
-     		this.$element.children('ul').prepend(card.$element); //Małe udoskonalenie - zamiana z 'append' na 'prepand';)
+ 		this.$element.children('ul').prepend(card.$element); //Małe udoskonalenie - zamiana z 'append' na 'prepand';)
     };
 
     Column.prototype.removeColumn = function() {
-      		this.$element.remove();
+  		this.$element.remove();
     };
-	
+
+
 	function Card(description) {
 		var self = this;
 
@@ -87,6 +88,8 @@ var board = {};
 		var name = prompt('Enter a column name');
 		var column = new Column(name);
 		column.$element.appendTo($(this).siblings('.column-container'));
+		column.$element.hide();
+		column.$element.fadeIn('slow');
 	    initSortable();
 	}
 
@@ -106,6 +109,7 @@ var board = {};
 		    connectWith: '.column-card-list',
 		    placeholder: 'card-placeholder'
 	    }).disableSelection();
+	    //if ($('.column-card-list').length > 1) $(this).find('.fake').hide();
 	}
 
 	function setFakeToLast() {
@@ -133,6 +137,7 @@ var board = {};
 	todoColumn.addCard(card1);
 	doingColumn.addCard(card2);
 
+	console.log(doingColumn.checkList);
 	/*$('li').mouseup(function() {
 		console.log($('.column-card-list').length)
 		setFakeToLast();
@@ -146,6 +151,8 @@ var board = {};
 		this.number = num;
 	    this.addColumn = function (column) {
 			this.$element.find('.column-container').append(column.$element);
+			column.$element.hide();
+			column.$element.fadeIn(1500);
 			initSortable();
 	    };
 
@@ -175,6 +182,9 @@ var board = {};
 	function setNewBoard(name) {
 		board = new Board(name);
 	    $('.operate').after(board.$element);
+		board.$element.hide();
+		board.$element.slideDown('slow');
+
 	    //count++;
 	    //var newBoard = null;
 	    //console.log(newBoard);
@@ -186,6 +196,12 @@ var board = {};
 		setNewBoard(boardName);
 	});
 
-	/*var buttons = $('.create-column');
-	console.log(buttons);*/
+	function checkList () {
+		$('.column-card-list').each(function () {
+			console.log($(this).find('li').length);
+			if ($(this).find('li').length > 1) $(this).find('.fake').hide();
+		});
+	}
+
+	checkList();
 });
