@@ -26,6 +26,7 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	text-align: center;
+	position: relative;
 	/*background: #777;*/
 }
 
@@ -108,6 +109,11 @@ button {
 	position: absolute;
 	top: 0;
 	right: 0;
+	color: darkred;
+}
+
+.board > .btn-delete {
+	font-size: 28px;
 }
 
 .column-card-list {

@@ -48,6 +48,7 @@ var board = {};
 
 	Column.prototype.addCard = function(card) {
  		this.$element.children('ul').prepend(card.$element); //Małe udoskonalenie - zamiana z 'append' na 'prepand';)
+		checkList();
     };
 
     Column.prototype.removeColumn = function() {
@@ -69,6 +70,7 @@ var board = {};
 	
 			$cardDelete.click(function(){
 		        self.removeCard();
+		        checkList();
 			});
 
 		    $card.append($cardDelete);
@@ -161,16 +163,27 @@ var board = {};
 			var $container = $('<div>').addClass('column-container');
 			var $boardTitle = $('<h1>').text(self.name);
 			var $setColumn = $('<button>').addClass('create-column').text('new column');
+			var $boardDelete = $('<button>').addClass('btn-delete').text('x');
+			
+			$boardDelete.click(function(){
+				self.deleteBoard();				
+			})
 			/*$setColumn.attr('id', self.number);*/
 
 			$setColumn.click(kurwa);
 
 			$board.append($boardTitle);
 			$board.append($setColumn);
+			$board.append($boardDelete);
 			$board.append($container);
 			
 			return $board;
 		}
+	}
+
+	Board.prototype.deleteBoard = function() {
+		var deleteDecision = prompt('Are you sure? Type "y" for "yes".');
+		if (deleteDecision == 'y') this.$element.remove();
 	}
 /*
 	Board.prototype.addColumn = function(column) {
@@ -198,10 +211,14 @@ var board = {};
 
 	function checkList () {
 		$('.column-card-list').each(function () {
-			console.log($(this).find('li').length);
 			if ($(this).find('li').length > 1) $(this).find('.fake').hide();
+			else $(this).find('.fake').show();
 		});
 	}
 
 	checkList();
+
+	$('.card').mouseup(function() {
+		checkList();
+	});
 });
