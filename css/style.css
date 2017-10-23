@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600i,700&subset=latin-ext');
+
 body {
-	/*background-image: url(' ../images/black_lozenge.png');
-	/* Background pattern from Subtle Patterns */
 	background-image: url('https://images.pexels.com/photos/90633/pexels-photo-90633.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -8,7 +8,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background-position: right;
-	font-family: 'Arial', monospace;
+	font-family: 'Raleway', sans-serif;
 }
 
 /* {
@@ -27,7 +27,6 @@ body {
 	margin-left: auto;
 	text-align: center;
 	position: relative;
-	/*background: #777;*/
 }
 
 .board h1 {
@@ -41,21 +40,20 @@ body {
 	text-align: center;
 }
 
-.operate .create-board {
+.create-board {
 	background: #f7b859;
 	margin: 10px;
 	width: 200px;
 	height: 50px;
-	text-transform: uppercase;
-
+	text-transform: capitalize;
 }
 
 .create-column {
 	margin: 10px;
-	background: #7cff85;
+	background: #b8d1cf;
 	width: 200px;
 	height: 50px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 
 .column-container {
@@ -71,16 +69,17 @@ body {
 }
 
 button {
-	/*padding: 10px 20px;*/
 	border: none;
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: 1px;
 	color: #222;
 	cursor: pointer;
+	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
 }
 
-.board .card {
+.card {
 	background: #f7b859;
 	border: 1 solid black;
 	list-style: none;
@@ -92,16 +91,18 @@ button {
 	border-radius: 5px 15px 5px 5px;
 	position: relative;
 	margin-bottom: 10px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	font-style: italic;
 }
 
-
-
 .add-card {
-	border-radius: 2px;
-	padding: 5px 5px;	
-	background: #7cff85;
+	padding: 10px 10px;
+	background: #b8d1cf;
 	text-transform: uppercase;
 	font-size: 13px;
+	letter-spacing: initial;
+	text-transform: lowercase;
 }
 
 .btn-delete {
@@ -136,5 +137,4 @@ button {
 	list-style: none;
 	font-style: italic;
 	color: #ddd;
-	/*line-height: 1px;*/
 }

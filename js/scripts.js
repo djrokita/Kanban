@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
-//var count = 0;
-var board = {};
+
 
 	function randomString() {
 	    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
@@ -13,8 +12,7 @@ var board = {};
 	}
 
 	function Column(name) {
-		var self = this; // useful for nested functions
-
+		var self = this;
 		this.id = randomString();
 		this.name = name;
 		this.$element = createColumn();
@@ -55,7 +53,6 @@ var board = {};
   		this.$element.remove();
     };
 
-
 	function Card(description) {
 		var self = this;
 
@@ -86,36 +83,11 @@ var board = {};
 		}
 	};
 
-	function kurwa(name) {
-		var name = prompt('Enter a column name');
-		var column = new Column(name);
-		column.$element.appendTo($(this).siblings('.column-container'));
-		column.$element.hide();
-		column.$element.fadeIn('slow');
-	    initSortable();
-	}
-
-	$('.create-column').click(function() {
-		console.log(this);
-		/*var $addElement = $('.column-container');
-		var name = prompt('Enter a column name');
-		var column = new Column(name);
-		this.before(column);
-	    //this.$addElement.addColumn(column);
-	    initSortable();
-	    console.log('Obiekt.number to: ' + newBoard.number);*/
-	});
-
 	function initSortable() {
 	    $('.column-card-list').sortable({
 		    connectWith: '.column-card-list',
 		    placeholder: 'card-placeholder'
 	    }).disableSelection();
-	    //if ($('.column-card-list').length > 1) $(this).find('.fake').hide();
-	}
-
-	function setFakeToLast() {
-	    $('.column-card-list').find('.fake').appendTo($('.column-card-list'));		
 	}
 
 	//Tworzenie tablicy
@@ -139,18 +111,13 @@ var board = {};
 	todoColumn.addCard(card1);
 	doingColumn.addCard(card2);
 
-	console.log(doingColumn.checkList);
-	/*$('li').mouseup(function() {
-		console.log($('.column-card-list').length)
-		setFakeToLast();
-	})*/
+	//Dodane przez ze mnie
 
 	function Board(name, num) {
 		var self = this;
 		this.id = randomString();
 		this.name = name;
 		this.$element = createBoard();
-		this.number = num;
 	    this.addColumn = function (column) {
 			this.$element.find('.column-container').append(column.$element);
 			column.$element.hide();
@@ -167,14 +134,15 @@ var board = {};
 			
 			$boardDelete.click(function(){
 				self.deleteBoard();				
-			})
-			/*$setColumn.attr('id', self.number);*/
+			});
 
-			$setColumn.click(kurwa);
+			$setColumn.click(newColumn);
 
 			$board.append($boardTitle);
 			$board.append($setColumn);
 			$board.append($boardDelete);
+			$boardDelete.hide();
+			$boardDelete.show('slow'); //Sposób na "skakanie" buttona X
 			$board.append($container);
 			
 			return $board;
@@ -184,30 +152,25 @@ var board = {};
 	Board.prototype.deleteBoard = function() {
 		var deleteDecision = prompt('Are you sure? Type "y" for "yes".');
 		if (deleteDecision == 'y') this.$element.remove();
-	}
-/*
-	Board.prototype.addColumn = function(column) {
-		this.$element.find('.column-container').append(column.$element);
-		//column.$element.appendTo($(this).('.column-container'));
-		//$(this).find('.column-container').append(column.$element);
 	};
-*/
+
+	function newColumn(name) {
+		var columnName = prompt('Enter a column name');
+		var column = new Column(columnName);
+		column.$element.appendTo($(this).siblings('.column-container'));
+		column.$element.hide();
+		column.$element.fadeIn('slow');
+	    initSortable();
+	}
+
 	function setNewBoard(name) {
 		board = new Board(name);
 	    $('.operate').after(board.$element);
 		board.$element.hide();
 		board.$element.slideDown('slow');
 
-	    //count++;
-	    //var newBoard = null;
-	    //console.log(newBoard);
 	    return board;		
 	}
-
-	$('.create-board').click(function() {
-		var boardName = prompt('Enter a board name');
-		setNewBoard(boardName);
-	});
 
 	function checkList () {
 		$('.column-card-list').each(function () {
@@ -216,13 +179,21 @@ var board = {};
 		});
 	}
 
+	$('.create-board').click(function() {
+		var boardName = prompt('Enter a board name');
+		setNewBoard(boardName);
+	});
+
 	checkList();
 
 	$('.card').mouseleave(function() {
 		checkList();
-	})
+	});
 
 	$('.card').mouseup(function() {
 		checkList();
 	});
+
+	var board = {};
+
 });
