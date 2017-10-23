@@ -218,6 +218,10 @@ var board = {};
 
 	checkList();
 
+	$('.card').mouseleave(function() {
+		checkList();
+	})
+
 	$('.card').mouseup(function() {
 		checkList();
 	});
