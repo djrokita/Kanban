@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-
-
 	function randomString() {
 	    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
 	    var str = '';
@@ -30,7 +28,8 @@ $(document).ready(function () {
 	        	self.removeColumn();
 				});
 		    $columnAddCard.click(function() {
-		        self.addCard(new Card(prompt("Enter the name of the card")));
+		        var newCard = prompt('Enter the name of the card', 'New Card');
+		        if (newCard != null) self.addCard(new Card(newCard));
 				});
 
 	    	$column.append($columnTitle);
@@ -150,17 +149,19 @@ $(document).ready(function () {
 	}
 
 	Board.prototype.deleteBoard = function() {
-		var deleteDecision = prompt('Are you sure? Type "y" for "yes".');
-		if (deleteDecision == 'y') this.$element.remove();
+		var deleteDecision = confirm('Are you sure?');
+		if (deleteDecision) this.$element.remove();
 	};
 
 	function newColumn(name) {
-		var columnName = prompt('Enter a column name');
-		var column = new Column(columnName);
-		column.$element.appendTo($(this).siblings('.column-container'));
-		column.$element.hide();
-		column.$element.fadeIn('slow');
-	    initSortable();
+		var columnName = prompt('Enter a column name', 'New Column');
+		if (columnName != null) {
+			var column = new Column(columnName);
+			column.$element.appendTo($(this).siblings('.column-container'));
+			column.$element.hide();
+			column.$element.fadeIn('slow');
+		    initSortable();
+		}
 	}
 
 	function setNewBoard(name) {
@@ -180,8 +181,8 @@ $(document).ready(function () {
 	}
 
 	$('.create-board').click(function() {
-		var boardName = prompt('Enter a board name');
-		setNewBoard(boardName);
+		var boardName = prompt('Enter a board name', 'New Kanban Board');
+		if(boardName != null) setNewBoard(boardName);
 	});
 
 	checkList();
