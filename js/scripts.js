@@ -91,40 +91,13 @@ $(document).ready(function() {
     }).disableSelection();
   }
 
-  //Tworzenie tablicy
-  setNewBoard('Kanban');
-
-  // TWORZENIE KOLUMN
-  var todoColumn = new Column('To do');
-  var doingColumn = new Column('Doing');
-  var doneColumn = new Column('Done');
-
-  // DODAWANIE KOLUMN DO TABLICY
-  board.addColumn(todoColumn);
-  board.addColumn(doingColumn);
-  board.addColumn(doneColumn);
-
-  // TWORZENIE NOWYCH EGZEMPLARZY KART
-  var card1 = new Card('New task');
-  var card2 = new Card('Create kanban boards');
-
-  // DODAWANIE KART DO KOLUMN
-  todoColumn.addCard(card1);
-  doingColumn.addCard(card2);
-
-  //Dodane przez ze mnie
+  //Dodane ode mnie
 
   function Board(name, num) {
     var self = this;
   //  this.id = randomString();
     this.name = name;
     this.$element = createBoard();
-    this.addColumn = function(column) {
-      this.$element.find('.column-container').append(column.$element);
-      column.$element.hide();
-      column.$element.fadeIn(1500);
-      initSortable();
-    };
 
     function createBoard() {
       var $board = $('<div>').addClass('board');
@@ -155,6 +128,14 @@ $(document).ready(function() {
     if (deleteDecision) this.$element.remove();
   };
 
+  Board.prototype.addColumn = function (column) {
+    this.$element.find('.column-container').append(column.$element);
+    column.$element.hide();
+    column.$element.fadeIn(1500);
+    initSortable();
+  };
+
+
   function newColumn(name) {
     var columnName = prompt('Enter a column name', 'New Column');
     if (columnName == '') columnName = 'New Column';
@@ -168,7 +149,7 @@ $(document).ready(function() {
   }
 
   function setNewBoard(name) {
-    board = new Board(name);
+    var board = new Board(name);
     $('.operate').after(board.$element);
     board.$element.hide();
     board.$element.slideDown('slow');
@@ -189,7 +170,26 @@ $(document).ready(function() {
     if (boardName != null) setNewBoard(boardName);
   });
 
-  checkList();
+    //Tworzenie tablicy
+  var board = setNewBoard('Kanban');
+
+  // TWORZENIE KOLUMN
+  var todoColumn = new Column('To do');
+  var doingColumn = new Column('Doing');
+  var doneColumn = new Column('Done');
+
+  // DODAWANIE KOLUMN DO TABLICY
+  board.addColumn(todoColumn);
+  board.addColumn(doingColumn);
+  board.addColumn(doneColumn);
+
+  // TWORZENIE NOWYCH EGZEMPLARZY KART
+  var card1 = new Card('New task');
+  var card2 = new Card('Create kanban boards');
+
+  // DODAWANIE KART DO KOLUMN
+  todoColumn.addCard(card1);
+  doingColumn.addCard(card2);
 
   $('.card').mouseleave(function() {
     checkList();
@@ -198,7 +198,6 @@ $(document).ready(function() {
   $('.card').mouseup(function() {
     checkList();
   });
-
-  var board = {};
-
+  
+  checkList();
 });
