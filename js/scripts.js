@@ -30,6 +30,7 @@ $(document).ready(function() {
       });
       $columnAddCard.click(function() {
         var newCard = prompt('Enter the name of the card', 'New Card');
+        if (newCard == '') newCard = 'Action we need to do';
         if (newCard != null) self.addCard(new Card(newCard));
       });
 
@@ -156,6 +157,7 @@ $(document).ready(function() {
 
   function newColumn(name) {
     var columnName = prompt('Enter a column name', 'New Column');
+    if (columnName == '') columnName = 'New Column';
     if (columnName != null) {
       var column = new Column(columnName);
       column.$element.appendTo($(this).siblings('.column-container'));
@@ -183,6 +185,7 @@ $(document).ready(function() {
 
   $('.create-board').click(function() {
     var boardName = prompt('Enter a board name', 'New Kanban Board');
+    if (boardName == '') boardName = 'New Kanban Board';
     if (boardName != null) setNewBoard(boardName);
   });
 
