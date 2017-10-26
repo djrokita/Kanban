@@ -56,7 +56,6 @@ $(document).ready(function() {
 
   function Card(description) {
     var self = this;
-
     //this.id = randomString();
     this.description = description;
     this.$element = createCard();
@@ -73,6 +72,16 @@ $(document).ready(function() {
 
       $card.append($cardDelete);
       $card.append($cardDescription);
+
+      $card.mouseleave(function() {
+        console.log('działa');
+        checkList();
+      });
+
+      $card.mouseup(function() {
+        console.log('działa');
+        checkList();
+      });
 
       return $card;
     }
@@ -191,13 +200,5 @@ $(document).ready(function() {
   todoColumn.addCard(card1);
   doingColumn.addCard(card2);
 
-  $('.card').mouseleave(function() {
-    checkList();
-  });
-
-  $('.card').mouseup(function() {
-    checkList();
-  });
-  
   checkList();
 });
