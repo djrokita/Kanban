@@ -3,6 +3,7 @@
 body {
 	background-image: url('https://images.pexels.com/photos/90633/pexels-photo-90633.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-size: cover;
 	color: #222;
 	min-height: 100vh;
