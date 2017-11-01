@@ -122,6 +122,7 @@ button {
 
 .column-card-list {
 	padding: 0;
+	list-style: none;
 }
 
 .column:nth-child(odd) {
@@ -133,7 +134,8 @@ button {
 }
 
 .card-placeholder {
-	border: 2px dotted black;
+	border: 2px dotted #222;
+	height: 15px;
 }
 
 .fake {
