@@ -74,12 +74,10 @@ $(document).ready(function() {
       $card.append($cardDescription);
 
       $card.mouseleave(function() {
-        console.log('działa');
         checkList();
       });
 
       $card.mouseup(function() {
-        console.log('działa');
         checkList();
       });
 
